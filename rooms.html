@@ -1,150 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Rooms | Hotel Lotus Vista</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0e0e0e;
-      color: #ffffff;
-    }
-    nav {
-      background: #111;
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #333;
-    }
-    nav a {
-      color: #d4af37;
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 30px;
-      font-weight: 600;
-      border-bottom: 1px solid #333;
-    }
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    .room {
-      display: flex;
-      flex-wrap: wrap;
-      background: #151515;
-      border-radius: 10px;
-      margin-bottom: 40px;
-      overflow: hidden;
-      border: 1px solid #2a2a2a;
-    }
-    .room img {
-      width: 100%;
-      max-width: 450px;
-      object-fit: cover;
-    }
-    .room-details {
-      padding: 25px;
-      flex: 1;
-    }
-    .room-details h2 {
-      color: #d4af37;
-      margin-top: 0;
-    }
-    .room-details ul {
-      padding-left: 20px;
-    }
-    .room-details li {
-      margin-bottom: 8px;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 22px;
-      background: #d4af37;
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 5px;
-    }
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      border-top: 1px solid #333;
-      margin-top: 50px;
-    }
-  </style>
+<title>Rooms | Hotel Lotus Vista</title>
+<style>
+body{font-family:Arial;background:#111;color:white;margin:0}
+header{background:black;padding:15px;text-align:center}
+.room{display:flex;flex-wrap:wrap;padding:20px}
+.room img{width:100%;max-width:400px}
+.room div{padding:20px}
+a{color:gold;text-decoration:none}
+</style>
 </head>
+
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="rooms.html">Rooms</a>
-  <a href="saim.html">AI Assistant</a>
-  <a href="rules.html">Rules</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
 <header>
-  Our Rooms – Comfort & Luxury
+<h2>Our Rooms</h2>
+<a href="index.html">← Back to Home</a>
 </header>
 
-<div class="container">
-
-  <!-- Deluxe Room -->
-  <div class="room">
-    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="Deluxe Room">
-    <div class="room-details">
-      <h2>Deluxe Room</h2>
-      <p>
-        Our Deluxe Rooms are designed for comfort and relaxation, 
-        perfect for business and leisure travelers.
-      </p>
-      <ul>
-        <li>Comfortable double bed</li>
-        <li>Air-conditioned room</li>
-        <li>Free Wi-Fi</li>
-        <li>Clean attached bathroom</li>
-        <li>24×7 room service</li>
-      </ul>
-      <a class="btn" href="contact.html">Book Now</a>
-    </div>
-  </div>
-
-  <!-- Super Deluxe Room -->
-  <div class="room">
-    <img src="https://images.unsplash.com/photo-1560448075-bb485b067938" alt="Super Deluxe Room">
-    <div class="room-details">
-      <h2>Super Deluxe Room</h2>
-      <p>
-        Experience extra space and premium comfort in our Super Deluxe Rooms,
-        ideal for families and long stays.
-      </p>
-      <ul>
-        <li>Spacious room with premium bedding</li>
-        <li>Air-conditioning & LED TV</li>
-        <li>High-speed Wi-Fi</li>
-        <li>Modern bathroom</li>
-        <li>Daily housekeeping</li>
-      </ul>
-      <a class="btn" href="contact.html">Book Now</a>
-    </div>
-  </div>
-
+<div class="room">
+<img src="images/lotus-room-front.jpg">
+<div>
+<h3>Deluxe Room</h3>
+<p>Spacious luxury room with modern amenities.</p>
+</div>
 </div>
 
-<footer>
-  © 2025 Hotel Lotus Vista | All Rights Reserved
-</footer>
+<div class="room">
+<img src="images/lotus-room-side-view.jpg">
+<div>
+<h3>Executive Room</h3>
+<p>Perfect for business & premium comfort.</p>
+</div>
+</div>
 
 </body>
 </html>
