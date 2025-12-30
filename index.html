@@ -4,49 +4,103 @@
 <meta charset="UTF-8">
 <title>Hotel Lotus Vista | Luxury Stay</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{margin:0;font-family:Arial;background:#0b0b0b;color:white}
-header{background:black;padding:15px;text-align:center}
-nav a{color:#d4af37;margin:15px;text-decoration:none;font-weight:bold}
-.hero{background:url('images/lotus-front-view.jpg') center/cover;height:90vh;display:flex;align-items:center;justify-content:center}
-.hero h1{background:rgba(0,0,0,0.6);padding:20px;border:2px solid gold}
-section{padding:40px;text-align:center}
-.btn{background:gold;color:black;padding:12px 25px;text-decoration:none;font-weight:bold}
-footer{background:black;padding:20px;text-align:center;color:#aaa}
+body{margin:0;font-family:Arial;background:#0b0b0b;color:#fff;scroll-behavior:smooth}
+nav{position:fixed;top:0;width:100%;background:#000;padding:12px;text-align:center;z-index:1000}
+nav a{color:#d4af37;margin:0 12px;text-decoration:none;font-weight:bold}
+section{padding:80px 20px;text-align:center}
+.hero{height:100vh;background:url('images/lotus-night-view.jpg') center/cover;display:flex;align-items:center;justify-content:center}
+.hero div{background:rgba(0,0,0,0.6);padding:30px;border:2px solid gold}
+.btn{display:inline-block;margin:10px;padding:12px 25px;background:gold;color:#000;text-decoration:none;font-weight:bold}
+.room,.policy{max-width:900px;margin:auto;text-align:left}
+.gallery img{width:100%;max-width:280px;margin:10px;border:2px solid gold}
+footer{background:#000;padding:20px;color:#aaa}
 </style>
 </head>
 
 <body>
 
-<header>
-<h2>HOTEL LOTUS VISTA</h2>
 <nav>
-<a href="index.html">Home</a>
-<a href="rooms.html">Rooms</a>
-<a href="gallery.html">Gallery</a>
-<a href="rules.html">Rules</a>
-<a href="contact.html">Contact</a>
+<a href="#home">Home</a>
+<a href="#rooms">Rooms</a>
+<a href="#gallery">Gallery</a>
+<a href="#rules">Rules</a>
+<a href="#contact">Contact</a>
 </nav>
-</header>
 
-<div class="hero">
-<h1>Luxury Comfort • Smart Service • Prime Location</h1>
+<!-- HERO -->
+<section id="home" class="hero">
+<div>
+<h1>Hotel Lotus Vista</h1>
+<p>Luxury • Comfort • Prime Location</p>
+<a class="btn" href="#contact">Book Now</a>
+<a class="btn" href="#ai">Chat with Saim</a>
 </div>
-
-<section>
-<h2>Welcome to Hotel Lotus Vista</h2>
-<p>Experience premium hospitality with modern rooms, restaurant, and professional service.</p>
-<a class="btn" href="rooms.html">View Rooms</a>
 </section>
 
+<!-- ABOUT -->
 <section>
+<h2>Welcome to Hotel Lotus Vista</h2>
+<p>Experience premium hospitality with modern rooms, clean environment and professional service in Alwar.</p>
+</section>
+
+<!-- ROOMS -->
+<section id="rooms">
+<h2>Our Rooms</h2>
+<div class="room">
+<h3>Deluxe Room</h3>
+<p>Comfortable room with AC, Wi-Fi, attached bathroom.</p>
+<img src="images/lotus-room-front.jpg" width="100%">
+<br><br>
+<h3>Super Deluxe Room</h3>
+<p>Spacious room with premium comfort and modern amenities.</p>
+<img src="images/lotus-room-side-view.jpg" width="100%">
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="images/lotus-front-view.jpg">
+<img src="images/lotus-loby.jpg">
+<img src="images/lotus-handwash.jpg">
+<img src="images/lotus-room-back-view.jpg">
+</div>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+<h2>Hotel Rules & Policies</h2>
+<div class="policy">
+<ul>
+<li>Check-in: 12 PM | Check-out: 11 AM</li>
+<li>Valid government ID required</li>
+<li>No smoking inside rooms</li>
+<li>Pets not allowed</li>
+<li>Damage to property will be charged</li>
+</ul>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Us</h2>
+<p>Hotel Lotus Vista, Alwar</p>
+<p>📞 Phone: +91 XXXXXXXXXX</p>
+<p>💬 WhatsApp available</p>
+</section>
+
+<!-- AI -->
+<section id="ai">
 <h2>AI Assistant – SAIM</h2>
-<p>Chat with our smart hotel assistant for booking, pricing & support.</p>
+<p>Chat with our smart AI assistant for booking & enquiries.</p>
 <a class="btn">Coming Soon</a>
 </section>
 
 <footer>
-© 2025 Hotel Lotus Vista | Designed for Demo & Sales
+© 2025 Hotel Lotus Vista | One-Page Smart Website
 </footer>
 
 </body>
