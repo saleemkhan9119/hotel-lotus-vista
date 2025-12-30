@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SAIM – AI Assistant | Hotel Lotus Vista</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0e0e0e;
+      color: #ffffff;
+    }
+    nav {
+      background: #111;
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    nav a {
+      color: #d4af37;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 30px;
+      font-weight: 600;
+      border-bottom: 1px solid #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .intro p {
+      color: #ccc;
+    }
+    .chat-box {
+      background: #151515;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      padding: 20px;
+    }
+    .chat {
+      max-height: 350px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .msg {
+      margin-bottom: 10px;
+    }
+    .user {
+      color: #4dd0e1;
+    }
+    .bot {
+      color: #d4af37;
+    }
+    input {
+      width: calc(100% - 90px);
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    button {
+      padding: 12px 16px;
+      margin-left: 5px;
+      background: #d4af37;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .hint {
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 14px;
+    }
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      border-top: 1px solid #333;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="rooms.html">Rooms</a>
+  <a href="saim.html">AI Assistant</a>
+  <a href="rules.html">Rules</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<header>
+  Meet SAIM – Your AI Hotel Assistant
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <p>
+      SAIM is our smart virtual receptionist, available 24×7 to help guests
+      with room booking, enquiries, and hotel information.
+    </p>
+  </div>
+
+  <div class="chat-box">
+    <div class="chat" id="chat">
+      <div class="msg bot">
+        <b>SAIM:</b> Hello 👋 I’m SAIM, your virtual assistant at Hotel Lotus Vista.
+        How may I assist you today?
+      </div>
+    </div>
+
+    <input type="text" id="userInput" placeholder="Type your message here…">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <div class="hint">
+    Try typing: <b>Hello</b>, <b>I want to book a room</b>, <b>Room price</b>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 Hotel Lotus Vista | Powered by SAIM AI
+</footer>
+
+<script>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("chat");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  chat.innerHTML += `<div class="msg user"><b>You:</b> ${msg}</div>`;
+
+  let reply = "Thank you for your message. Our team will assist you shortly.";
+
+  const lower = msg.toLowerCase();
+
+  if (lower.includes("hello") || lower.includes("hi")) {
+    reply = "Hello 👋 Welcome to Hotel Lotus Vista. How may I help you?";
+  } else if (lower.includes("book")) {
+    reply = "Sure 😊 Please share your check-in date and number of guests.";
+  } else if (lower.includes("room")) {
+    reply = "We offer Deluxe and Super Deluxe rooms. Would you like to book one?";
+  } else if (lower.includes("price")) {
+    reply = "Room prices vary by date and room type. Please share your stay dates.";
+  }
+
+  chat.innerHTML += `<div class="msg bot"><b>SAIM:</b> ${reply}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
