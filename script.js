@@ -1,4 +1,12 @@
-/* ================= MENU TOGGLE ================= */
+/*************************************************
+ * GLOBAL CONFIG
+ *************************************************/
+const N8N_WEBHOOK_URL =
+  "https://sallu1196.app.n8n.cloud/webhook/saim-chat";
+
+/*************************************************
+ * NAVBAR MENU (DESKTOP + MOBILE)
+ *************************************************/
 function toggleMenu() {
   const nav = document.getElementById("navLinks");
   if (nav) {
@@ -6,81 +14,10 @@ function toggleMenu() {
   }
 }
 
-/* ================= WHATSAPP ================= */
-function openWhatsApp() {
-  window.open("https://wa.me/919119189348", "_blank");
-}
-
-/* ================= BOOK NOW ================= */
-function bookNow() {
-  window.open(
-    "https://wa.me/919119189348?text=Hello,%20I%20want%20to%20book%20a%20room%20at%20Hotel%20Lotus%20Vista",
-    "_blank"
-  );
-}
-
-/* ================= SAIM AI (SMART DEMO) ================= */
-/*
-  NOTE:
-  - Abhi ye LOCAL smart AI hai (demo)
-  - Next step me isi jagah n8n webhook connect hoga
-*/
-
-function sendMessage() {
-  const input = document.getElementById("userMessage");
-  const chatBox = document.querySelector(".chat-box");
-
-  if (!input || !chatBox) return;
-  if (input.value.trim() === "") return;
-
-  const userText = input.value.trim();
-
-  // User message
-  const userMsg = document.createElement("div");
-  userMsg.className = "chat-message user";
-  userMsg.innerText = "You: " + userText;
-  chatBox.appendChild(userMsg);
-
-  // SAIM reply logic
-  let reply =
-    "Thank you for contacting Hotel Lotus Vista. Please let me know how I can assist you 😊";
-
-  const msg = userText.toLowerCase();
-
-  if (msg.includes("price") || msg.includes("room")) {
-    reply =
-      "We offer Deluxe Rooms starting from ₹2,499 and Super Deluxe Rooms from ₹3,999 per night.";
-  } else if (msg.includes("location") || msg.includes("address")) {
-    reply =
-      "Hotel Lotus Vista is located in Alwar, Rajasthan. You can find us easily on Google Maps.";
-  } else if (msg.includes("book")) {
-    reply =
-      "Sure! Please click on the 'Book Now' button or message us on WhatsApp to confirm your booking.";
-  } else if (msg.includes("check")) {
-    reply =
-      "Check-in time is 12 PM and check-out time is 11 AM as per hotel policy.";
-  } else if (msg.includes("contact") || msg.includes("number")) {
-    reply =
-      "You can contact us directly on +91 9119189348 or WhatsApp us for quick assistance.";
-  }
-
-  // Bot message
-  const botMsg = document.createElement("div");
-  botMsg.className = "chat-message bot";
-  botMsg.innerText = "SAIM: " + reply;
-
-  setTimeout(() => {
-    chatBox.appendChild(botMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 500);
-
-  input.value = "";
-}
-
-/* ================= AUTO CLOSE MENU ON LINK CLICK (MOBILE) ================= */
+// Mobile me link click par menu band ho
 document.addEventListener("DOMContentLoaded", () => {
-  const links = document.querySelectorAll("#navLinks a");
-  links.forEach((link) => {
+  const navLinks = document.querySelectorAll("#navLinks a");
+  navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       const nav = document.getElementById("navLinks");
       if (nav && nav.classList.contains("show")) {
@@ -89,3 +26,90 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/*************************************************
+ * SAIM AI CHAT (WEBSITE → N8N → AI → WEBSITE)
+ *************************************************/
+async function sendMessage() {
+  const input = document.getElementById("userMessage");
+  const chatBox = document.querySelector(".chat-box");
+
+  if (!input || !chatBox) {
+    console.error("Chat elements not found");
+    return;
+  }
+
+  const userText = input.value.trim();
+  if (userText === "") return;
+
+  /* ---------- USER MESSAGE ---------- */
+  const userMsg = document.createElement("div");
+  userMsg.className = "chat-message user";
+  userMsg.innerText = userText;
+  chatBox.appendChild(userMsg);
+
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  /* ---------- BOT LOADING ---------- */
+  const botMsg = document.createElement("div");
+  botMsg.className = "chat-message bot";
+  botMsg.innerText = "SAIM is typing...";
+  chatBox.appendChild(botMsg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  /* ---------- CALL N8N WEBHOOK ---------- */
+  try {
+    const response = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: userText,
+        source: "hotel_lotus_vista_website",
+        language: "auto",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
+    }
+
+    const data = await response.json();
+
+    // Expected response: { reply: "text" }
+    if (data && data.reply) {
+      botMsg.innerText = data.reply;
+    } else {
+      botMsg.innerText =
+        "Sorry, I did not receive a proper reply. Please try again.";
+    }
+  } catch (error) {
+    console.error("SAIM connection error:", error);
+    botMsg.innerText =
+      "Connection problem. Please check your internet or try again.";
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/*************************************************
+ * FUTURE READY (BOOKING / PAYMENT / WHATSAPP)
+ * — abhi use nahi ho raha, but miss bhi nahi hoga
+ *************************************************/
+
+// Example future booking trigger
+function startBookingFromSAIM() {
+  const input = document.getElementById("userMessage");
+  if (input) {
+    input.value =
+      "I want to book a room. Please ask me date, guests and room type.";
+    input.focus();
+  }
+}
+
+// Example WhatsApp fallback (optional later)
+function openWhatsAppFallback() {
+  window.open("https://wa.me/919119189348", "_blank");
+}
