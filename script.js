@@ -16,3 +16,6 @@ function sendMessage() {
 
   input.value = "";
 }
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("show");
+}
