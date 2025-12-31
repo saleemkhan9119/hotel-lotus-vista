@@ -2,43 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hotel Lotus Vista | Luxury Stay in Alwar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <title>Hotel Lotus Vista | Luxury Stay in Alwar</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">Lotus Vista</div>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="logo">Lotus <span>Vista</span></div>
 
-  <nav class="nav-links" id="navLinks">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+  <nav id="navLinks">
+    <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#rooms">Rooms</a>
     <a href="#saim">SAIM AI</a>
     <a href="#gallery">Gallery</a>
-    <a href="#policies">Policies</a>
+    <a href="#rules">Policies</a>
     <a href="#contact">Contact</a>
   </nav>
-
-  <!-- Hamburger -->
-  <div class="menu-icon" onclick="toggleMenu()">
-    ☰
-  </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
+<!-- ================= HERO ================= -->
+<section id="home" class="hero">
   <h1>Hotel <span>Lotus Vista</span></h1>
   <p>Luxury • Comfort • Smart Hospitality<br>Premium Stay in Alwar, Rajasthan</p>
 
   <div class="hero-buttons">
-    <button class="gold-btn">Book Your Stay</button>
-    <button class="outline-btn">Chat with SAIM</button>
+    <a href="https://wa.me/919119189348" class="btn gold">Book Your Stay</a>
+    <a href="#saim" class="btn outline">Chat with SAIM</a>
   </div>
 
   <div class="hero-features">
@@ -48,12 +43,12 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 <section id="about" class="section">
   <h2>About Our Hotel</h2>
-  <p class="section-desc">
+  <p class="section-text">
     Welcome to Hotel Lotus Vista, where luxury meets comfort in the heart of Alwar.
-    We offer premium rooms, spotless cleanliness, warm hospitality and smart AI-powered assistance.
+    We offer premium rooms, spotless cleanliness, warm hospitality, and smart AI-powered support.
   </p>
 
   <div class="cards">
@@ -64,47 +59,35 @@
   </div>
 </section>
 
-<!-- ROOMS -->
+<!-- ================= ROOMS ================= -->
 <section id="rooms" class="section dark">
   <h2>Our Rooms</h2>
 
-  <div class="room-grid">
-    <div class="room-card">
+  <div class="room-cards">
+    <div class="room">
+      <img src="images/lotus-room-front.jpg">
       <h3>Deluxe Room</h3>
-      <p>Starting from ₹2,499 / night</p>
-      <ul>
-        <li>AC</li>
-        <li>Free Wi-Fi</li>
-        <li>LED TV</li>
-        <li>Attached Bathroom</li>
-      </ul>
-      <button class="gold-btn small">Book Now</button>
+      <p>₹2,499 / night</p>
+      <a href="https://wa.me/919119189348" class="btn gold">Book Now</a>
     </div>
 
-    <div class="room-card highlight">
+    <div class="room">
+      <img src="images/lotus-room-side-view.jpg">
       <h3>Super Deluxe Room</h3>
-      <p>Starting from ₹3,999 / night</p>
-      <ul>
-        <li>High Speed Wi-Fi</li>
-        <li>Premium Bathroom</li>
-        <li>Smart TV</li>
-        <li>Room Service</li>
-      </ul>
-      <button class="gold-btn small">Book Now</button>
+      <p>₹3,999 / night</p>
+      <a href="https://wa.me/919119189348" class="btn gold">Book Now</a>
     </div>
   </div>
 </section>
 
-<!-- SAIM AI -->
+<!-- ================= SAIM AI ================= -->
 <section id="saim" class="section">
   <h2>Meet SAIM</h2>
-  <p class="section-desc">
-    Your Smart AI Hotel Assistant. Get instant answers, pricing, availability and booking help.
-  </p>
+  <p>Your Smart AI Hotel Assistant</p>
 
   <div class="chat-box">
     <div class="chat-message bot">
-      Hello! I’m SAIM, your AI assistant. How can I help you today?
+      Hello! I’m SAIM 🤖<br>How can I help you today?
     </div>
   </div>
 
@@ -114,45 +97,50 @@
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- ================= GALLERY ================= -->
 <section id="gallery" class="section dark">
   <h2>Photo Gallery</h2>
-  <div class="gallery-grid">
-    <div class="gallery-box">Hotel Exterior</div>
-    <div class="gallery-box">Deluxe Room</div>
-    <div class="gallery-box">Bathroom</div>
-    <div class="gallery-box">Restaurant</div>
+
+  <div class="gallery">
+    <img src="images/lotus-front-view.jpg">
+    <img src="images/lotus-lobby.jpg">
+    <img src="images/lotus-night-view.jpg">
+    <img src="images/lotus-handwash.jpg">
   </div>
 </section>
 
-<!-- POLICIES -->
-<section id="policies" class="section">
+<!-- ================= RULES ================= -->
+<section id="rules" class="section">
   <h2>Hotel Rules & Policies</h2>
-  <div class="policy-grid">
-    <div class="policy">Check-in 12 PM | Check-out 11 AM</div>
-    <div class="policy">Valid ID Required</div>
-    <div class="policy">No Smoking</div>
-    <div class="policy">No Pets Allowed</div>
-    <div class="policy">Property Damage Chargeable</div>
-    <div class="policy">24×7 CCTV Security</div>
+
+  <div class="cards">
+    <div class="card">Check-in: 12 PM | Check-out: 11 AM</div>
+    <div class="card">Valid ID Required</div>
+    <div class="card">No Smoking Inside Rooms</div>
+    <div class="card">24×7 CCTV Security</div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ================= CONTACT ================= -->
 <section id="contact" class="section dark">
   <h2>Contact & Location</h2>
-  <p>Alwar, Rajasthan, India</p>
-  <p>📞 +91 XXXXX XXXXX</p>
-  <p>📧 contact@lotusvista.com</p>
+
+  <p>📍 Alwar, Rajasthan, India</p>
+  <p>📞 <a href="tel:9119189348">+91 9119189348</a></p>
 
   <div class="contact-buttons">
-    <button class="green-btn">WhatsApp Now</button>
-    <button class="outline-btn">Call Now</button>
+    <a href="https://wa.me/919119189348" class="btn green">WhatsApp Now</a>
+    <a href="tel:9119189348" class="btn gold">Call Now</a>
   </div>
+
+  <iframe
+    src="https://www.google.com/maps?q=Alwar,Rajasthan&output=embed"
+    loading="lazy">
+  </iframe>
 </section>
 
 <footer>
-  © 2025 Hotel Lotus Vista. All Rights Reserved.
+  © 2025 Hotel Lotus Vista • All Rights Reserved
 </footer>
 
 <script src="script.js"></script>
