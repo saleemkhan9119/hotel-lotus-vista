@@ -1,36 +1,12 @@
-let saimDemoWelcomed = false;
-/*************************************************
+/***********************
  * GLOBAL CONFIG
- *************************************************/
+ ***********************/
 const N8N_WEBHOOK_URL =
   "https://sallu1196.app.n8n.cloud/webhook/saim-chat";
 
-/*************************************************
- * NAVBAR MENU (DESKTOP + MOBILE)
- *************************************************/
-function toggleMenu() {
-  const nav = document.getElementById("navLinks");
-  if (nav) {
-    nav.classList.toggle("show");
-  }
-}
-
-// Mobile me link click par menu band ho
-document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll("#navLinks a");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      const nav = document.getElementById("navLinks");
-      if (nav && nav.classList.contains("show")) {
-        nav.classList.remove("show");
-      }
-    });
-  });
-});
-
-/*************************************************
- * SAIM AI CHAT (WEBSITE → N8N → AI → WEBSITE)
- *************************************************/
+/***********************
+ * SAIM AI CHAT
+ ***********************/
 async function sendMessage() {
   const input = document.getElementById("userMessage");
   const chatBox = document.querySelector(".chat-box");
@@ -52,14 +28,13 @@ async function sendMessage() {
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  /* ---------- BOT LOADING ---------- */
-  const botMsg = document.createElement("div");
-  botMsg.className = "chat-message bot";
-  botMsg.innerText = "SAIM is typing...";
-  chatBox.appendChild(botMsg);
+  /* ---------- BOT TYPING ---------- */
+  const typingMsg = document.createElement("div");
+  typingMsg.className = "chat-message bot";
+  typingMsg.innerText = "SAIM is typing...";
+  chatBox.appendChild(typingMsg);
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  /* ---------- CALL N8N WEBHOOK ---------- */
   try {
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
@@ -67,9 +42,10 @@ async function sendMessage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-  text: userText,
-  sessionId: "website-user-1"
-})
+        message: userText,
+        source: "hotel_lotus_vista_website",
+        language: "auto",
+      }),
     });
 
     if (!response.ok) {
@@ -78,56 +54,26 @@ async function sendMessage() {
 
     const data = await response.json();
 
-// n8n usually sends: { output: "text" }
-if (data && (data.reply || data.output)) {
-  botMsg.innerText = data.reply || data.output;
-} else {
-  botMsg.innerText =
-    "Thank you for your message. Our assistant will respond shortly.";
-}
-  } catch (error) {
-  console.error("SAIM connection error:", error);
+    // ❗ remove typing message
+    typingMsg.remove();
 
-  if (!saimDemoWelcomed) {
+    /* ---------- BOT FINAL MESSAGE ---------- */
+    const botMsg = document.createElement("div");
+    botMsg.className = "chat-message bot";
+
+    // ✅ IMPORTANT: n8n sends `output`
     botMsg.innerText =
-      "Hello 👋 Welcome to Hotel Lotus Vista. I’m SAIM, your virtual assistant. The live AI system is currently under testing. You can explore rooms, gallery, and contact details on this website.";
-    saimDemoWelcomed = true;
-  } else {
-    // simple smart demo replies
-    if (userText.toLowerCase().includes("room")) {
-      botMsg.innerText =
-        "We offer Deluxe and Super Deluxe rooms. Please check the Rooms section for details and photos.";
-    } else if (userText.toLowerCase().includes("book")) {
-      botMsg.innerText =
-        "For bookings, please contact us directly via phone or WhatsApp. Online booking will be enabled soon.";
-    } else if (userText.toLowerCase().includes("location")) {
-      botMsg.innerText =
-        "Hotel Lotus Vista is located on Delhi–Alwar Road, Ramgarh, Alwar, Rajasthan.";
-    } else {
-      botMsg.innerText =
-        "Thank you for your message. Please explore the website for complete details or contact us for assistance.";
-    }
+      data && data.output
+        ? data.output
+        : "Sorry, I didn't understand that.";
+
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+  } catch (error) {
+    console.error("SAIM connection error:", error);
+
+    typingMsg.innerText =
+      "Connection problem. Please try again later.";
   }
-
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-/*************************************************
- * FUTURE READY (BOOKING / PAYMENT / WHATSAPP)
- * — abhi use nahi ho raha, but miss bhi nahi hoga
- *************************************************/
-
-// Example future booking trigger
-function startBookingFromSAIM() {
-  const input = document.getElementById("userMessage");
-  if (input) {
-    input.value =
-      "I want to book a room. Please ask me date, guests and room type.";
-    input.focus();
-  }
-}
-
-// Example WhatsApp fallback (optional later)
-function openWhatsAppFallback() {
-  window.open("https://wa.me/919119189348", "_blank");
 }
