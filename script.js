@@ -67,10 +67,9 @@ async function sendMessage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: userText,
-        source: "hotel_lotus_vista_website",
-        language: "auto",
-      }),
+  text: userText,
+  sessionId: "website-user-1"
+})
     });
 
     if (!response.ok) {
