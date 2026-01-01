@@ -39,8 +39,9 @@ async function sendMessage() {
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-      },
+  "Content-Type": "application/json",
+  "Accept": "application/json"
+},
       body: JSON.stringify({
         message: userText,
         source: "hotel_lotus_vista_website",
@@ -71,9 +72,13 @@ async function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 
   } catch (error) {
-    console.error("SAIM connection error:", error);
+  console.error("SAIM connection error:", error);
+  typingMsg.remove();
 
-    typingMsg.innerText =
-      "Connection problem. Please try again later.";
+  const errorMsg = document.createElement("div");
+  errorMsg.className = "chat-message bot";
+  errorMsg.innerText =
+    "⚠️ AI service is temporarily unavailable. Please try again shortly.";
+  chatBox.appendChild(errorMsg);
   }
 }
