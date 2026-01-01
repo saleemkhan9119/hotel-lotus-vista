@@ -78,17 +78,19 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    // Expected response: { reply: "text" }
-    if (data && data.reply) {
-      botMsg.innerText = data.reply;
-    } else {
-      botMsg.innerText =
-        "Sorry, I did not receive a proper reply. Please try again.";
-    }
+// n8n usually sends: { output: "text" }
+if (data && (data.reply || data.output)) {
+  botMsg.innerText = data.reply || data.output;
+} else {
+  botMsg.innerText =
+    "Thank you for your message. Our assistant will respond shortly.";
+}
   } catch (error) {
-    console.error("SAIM connection error:", error);
-    botMsg.innerText =
-      "Connection problem. Please check your internet or try again.";
+  console.error("SAIM connection error:", error);
+
+  // DEMO MODE reply (client ke liye)
+  botMsg.innerText =
+    "Hello 👋 Welcome to Hotel Lotus Vista. I’m SAIM, your virtual assistant. The live AI system is currently under testing. Please explore the website or contact us for bookings.";
   }
 
   chatBox.scrollTop = chatBox.scrollHeight;
