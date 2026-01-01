@@ -1,3 +1,4 @@
+let saimDemoWelcomed = false;
 /*************************************************
  * GLOBAL CONFIG
  *************************************************/
@@ -88,9 +89,25 @@ if (data && (data.reply || data.output)) {
   } catch (error) {
   console.error("SAIM connection error:", error);
 
-  // DEMO MODE reply (client ke liye)
-  botMsg.innerText =
-    "Hello 👋 Welcome to Hotel Lotus Vista. I’m SAIM, your virtual assistant. The live AI system is currently under testing. Please explore the website or contact us for bookings.";
+  if (!saimDemoWelcomed) {
+    botMsg.innerText =
+      "Hello 👋 Welcome to Hotel Lotus Vista. I’m SAIM, your virtual assistant. The live AI system is currently under testing. You can explore rooms, gallery, and contact details on this website.";
+    saimDemoWelcomed = true;
+  } else {
+    // simple smart demo replies
+    if (userText.toLowerCase().includes("room")) {
+      botMsg.innerText =
+        "We offer Deluxe and Super Deluxe rooms. Please check the Rooms section for details and photos.";
+    } else if (userText.toLowerCase().includes("book")) {
+      botMsg.innerText =
+        "For bookings, please contact us directly via phone or WhatsApp. Online booking will be enabled soon.";
+    } else if (userText.toLowerCase().includes("location")) {
+      botMsg.innerText =
+        "Hotel Lotus Vista is located on Delhi–Alwar Road, Ramgarh, Alwar, Rajasthan.";
+    } else {
+      botMsg.innerText =
+        "Thank you for your message. Please explore the website for complete details or contact us for assistance.";
+    }
   }
 
   chatBox.scrollTop = chatBox.scrollHeight;
